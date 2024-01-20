@@ -3,6 +3,19 @@ import UserAgent from 'user-agents';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 
 import { Client } from '@googlemaps/google-maps-services-js';
+import {GetSecretValueCommand, SecretsManagerClient} from "@aws-sdk/client-secrets-manager";
+
+const SECRET_ID = "prod/hotelhacker/mapsKey";
+const REGION = "us-east-1";
+const API_KEY = 'mapsKey'
+
+const secretsClient = new SecretsManagerClient({ region: REGION });
+const input = {
+  SecretId: SECRET_ID,
+};
+const command = new GetSecretValueCommand(input);
+const response = await secretsClient.send(command);
+const mapsKey = JSON.parse(response.SecretString)[API_KEY]
 
 if (process.argv.length < 3) {
   throw Error();
@@ -20,7 +33,7 @@ const nextDay = getFormattedDate(new Date(new Date().getTime() + 86400 * 1000));
 
 const geocodeArgs = {
   params: {
-    key: 'AIzaSyCtDRwy2W_XPFm2lFMrol-hBASUwHRhgmY',
+    key: mapsKey,
     address: process.argv.splice(2).join(' '),
   }
 }
@@ -66,7 +79,7 @@ const getHotelAvailability = async (page, months) => {
 
 const userAgent = new UserAgent();
 const browser = await puppeteer.launch({
-  headless: false,
+  headless: true,
 })
 
 const page = await browser.newPage();

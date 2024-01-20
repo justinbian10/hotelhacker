@@ -10,7 +10,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.496.0",
     "@googlemaps/google-maps-services-js": "^3.3.42",
+    "aws-sdk": "^2.1540.0",
     "puppeteer": "^21.0.3",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
