@@ -1,7 +1,7 @@
 {
-  "name": "travacker",
+  "name": "hotelhacker",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "getHotelAvailability.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,10 +12,12 @@
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.496.0",
     "@googlemaps/google-maps-services-js": "^3.3.42",
+    "@sparticuz/chromium": "^119.0.2",
     "aws-sdk": "^2.1540.0",
-    "puppeteer": "^21.0.3",
+    "puppeteer-core": "^21.5.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
-    "user-agents": "^1.0.1444"
+    "typescript": "^5.3.3",
+    "user-agents": "^1.1.107"
   }
 }
